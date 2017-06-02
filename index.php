@@ -8,9 +8,10 @@
 
 <body class="nav-md">
 	<div class="container body">
-		<div class="main_coantainer">
+		<div class="main_container">
 			<?php
 				require 'layout/side_menu.php';
+				require 'layout/top_navigation.php';
 				require 'layout/content.php';
 				require 'layout/footer.php';
 			?>
