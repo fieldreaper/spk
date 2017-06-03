@@ -7,13 +7,6 @@
 
 		<div class="clearfix"></div>
 
-		<div class="profile clearfix">
-			<div class="profile_info">
-				<span>Selamat datang,</span>
-				<h2>Admin SPK</h2>
-			</div>
-		</div>
-
 		<br>
 		<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 			
@@ -31,9 +24,6 @@
 					</li>
 					<li>
 						<a href="penilaian.php"><i class="fa fa-trophy"></i> Penilaian</a>
-					</li>
-					<li>
-						<a href="logout.php"><i class="fa fa-sign-out"></i> Keluar</a>
 					</li>
 				</ul>
 			</div>
