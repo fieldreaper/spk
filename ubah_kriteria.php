@@ -2,18 +2,19 @@
 	session_start();
 	require 'koneksi.php';
 
-	if(isset($_POST['tambah'])) {
+	if(isset($_POST['ubah'])) {
+		$id_kriteria = $_POST['id'];
 		$nama_kriteria = $_POST['nama'];
 		$bobot_kriteria = $_POST['bobot'];
 		$jenis_kriteria = $_POST['jenis'];
 
-		$sql = "INSERT INTO kriteria VALUES(null, '$nama_kriteria', $bobot_kriteria, '$jenis_kriteria')";
+		$sql = "UPDATE kriteria SET nama = '$nama_kriteria', bobot = $bobot_kriteria, jenis = '$jenis_kriteria' WHERE id = $id_kriteria";
 		$query = mysqli_query($koneksi, $sql);
 
 		if($query) {
-			$_SESSION['status_kriteria'] = 1;
+			$_SESSION['status_kriteria'] = 3;
 		} else {
-			$_SESSION['status_kriteria'] = 0;
+			$_SESSION['status_kriteria'] = 2;
 		}
 
 		header('Location: kriteria.php');

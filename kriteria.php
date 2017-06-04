@@ -25,14 +25,14 @@
 								<div class="x_title">
 									<h2>Data Kriteria</h2>
 									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="" data-toggle="modal" data-placement="right" data-target=".bs-example-modal-lg" title="Tambah Kriteria"><i class="fa fa-plus"></i></a></li>
+										<li><a class="" data-toggle="modal" data-placement="right" data-target="#modal_tambah_kriteria" title="Tambah Kriteria"><i class="fa fa-plus"></i></a></li>
 									</ul>
-									<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+									<div id="modal_tambah_kriteria" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 												<div class="modal-header">
 													<button class="close" data-dismiss="modal"><span aria-hidden="true">x</span></button>
-													<h4 class="modal-title" id="myModalLabel">Tambah Data Kriteria</h4>
+													<h4 class="modal-title">Tambah Data Kriteria</h4>
 												</div>
 												<form method="post" action="tambah_kriteria.php" data-parsley-validate class="form-horizontal form-label-left">
 													<div class="modal-body">
@@ -71,22 +71,51 @@
 									<?php
 										require 'koneksi.php';
 
-										if(isset($_SESSION['status_tambah_kriteria'])) {
-											if($_SESSION['status_tambah_kriteria'] == 1) {
+										if(isset($_SESSION['status_kriteria'])) {
+											if($_SESSION['status_kriteria'] == 1) {
 									?>
 												<div class="alert alert-success alert-dismissible fade in" role="alert">
-													<button class="close" data-dimiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
 													Sukses menambahkan kriteria!
 												</div>
 									<?php
-											} else {
+											} else if($_SESSION['status_kriteria'] == 0) {
 									?>
 												<div class="alert alert-danger alert-dismissible fade in" role="alert">
-													<button class="close" data-dimiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
 													Gagal menambahkan kriteria!
 												</div>
 									<?php
+											} else if($_SESSION['status_kriteria'] == 3) {
+									?>
+												<div class="alert alert-success alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Sukses mengubah kriteria!
+												</div>
+									<?php
+											} else if($_SESSION['status_kriteria'] == 2) {
+									?>
+												<div class="alert alert-danger alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Gagal mengubah kriteria!
+												</div>
+									<?php
+											} else if($_SESSION['status_kriteria'] == 5) {
+									?>
+												<div class="alert alert-success alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Sukses menghapus kriteria!
+												</div>
+									<?php
+											} else if($_SESSION['status_kriteria'] == 4) {
+									?>
+												<div class="alert alert-danger alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Gagal menghapus kriteria!
+												</div>
+									<?php
 											}
+											session_unset($_SESSION['status_kriteria']);
 										}
 										get_kriteria();
 									?>
