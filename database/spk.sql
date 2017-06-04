@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2017 at 07:10 PM
+-- Generation Time: Jun 04, 2017 at 06:14 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -44,6 +44,15 @@ CREATE TABLE `kriteria` (
   `jenis` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `kriteria`
+--
+
+INSERT INTO `kriteria` (`id`, `nama`, `bobot`, `jenis`) VALUES
+(3, 'Manfaat', 10, 'Keuntungan'),
+(5, 'Test kriteria', 1, 'Biaya'),
+(6, 'Tes Kriteria 2', 20, 'Keuntungan');
+
 -- --------------------------------------------------------
 
 --
@@ -52,10 +61,18 @@ CREATE TABLE `kriteria` (
 
 CREATE TABLE `subkriteria` (
   `id` int(2) NOT NULL,
-  `nama` int(25) NOT NULL,
+  `nama` varchar(25) NOT NULL,
   `bobot` int(2) NOT NULL,
   `id_kriteria` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subkriteria`
+--
+
+INSERT INTO `subkriteria` (`id`, `nama`, `bobot`, `id_kriteria`) VALUES
+(4, 'Sangat Bermanfaat', 7, 3),
+(5, 'Tes Subkriteria', 2, 5);
 
 --
 -- Indexes for dumped tables
@@ -77,7 +94,8 @@ ALTER TABLE `kriteria`
 -- Indexes for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_kriteria` (`id_kriteria`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -92,12 +110,12 @@ ALTER TABLE `alternatif`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -106,7 +124,7 @@ ALTER TABLE `subkriteria`
 -- Constraints for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  ADD CONSTRAINT `fk_subkriteria_kriteria` FOREIGN KEY (`id`) REFERENCES `kriteria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_subkriteria_kriteria` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

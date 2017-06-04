@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require 'crud_kriteria.php'
+	require 'crud_subkriteria.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,38 +26,35 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Data Kriteria</h2>
+									<?php
+										$sql = "SELECT * FROM kriteria WHERE id = " .$_GET['id'];
+										$query = mysqli_query($koneksi, $sql);
+										$row = mysqli_fetch_assoc($query);
+									?>
+									<h2>Data Subkriteria <?php echo $row['nama']; ?></h2>
 									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="" data-toggle="modal" data-placement="right" data-target="#modal_tambah_kriteria" title="Tambah Kriteria"><i class="fa fa-plus"></i></a></li>
+										<li><a class="" data-toggle="modal" data-placement="right" data-target="#modal_tambah_subkriteria" title="Tambah Subkriteria"><i class="fa fa-plus"></i></a></li>
 									</ul>
-									<div id="modal_tambah_kriteria" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+									<div id="modal_tambah_subkriteria" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 												<div class="modal-header">
 													<button class="close" data-dismiss="modal"><span aria-hidden="true">x</span></button>
-													<h4 class="modal-title">Tambah Data Kriteria</h4>
+													<h4 class="modal-title">Tambah Data Subkriteria</h4>
 												</div>
-												<form method="post" action="crud_kriteria.php" data-parsley-validate class="form-horizontal form-label-left">
+												<form method="post" action="crud_subkriteria.php" data-parsley-validate class="form-horizontal form-label-left">
 													<div class="modal-body">
+														<input type="hidden" name="id_kriteria" value="<?php echo $_GET['id']; ?>">
 														<div class="form-group">
-															<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Kriteria <span class="required">*</span></label>
+															<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Subkriteria <span class="required">*</span></label>
 															<div class="col-md-6 col-sm-6 col-xs-12">
 																<input type="text" name="nama" class="form-control col-md-7 col-xs-12" required />
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="control-label col-md-3 col-sm-3 col-xs-12">Bobot Kriteria <span class="required">*</span></label>
+															<label class="control-label col-md-3 col-sm-3 col-xs-12">Bobot Subkriteria <span class="required">*</span></label>
 															<div class="col-md-6 col-sm-6 col-xs-12">
 																<input type="number" name="bobot" class="form-control col-md-7 col-xs-12" required />
-															</div>
-														</div>
-														<div class="form-group">
-															<label class="control-label col-md-3 col-sm-3 col-xs-12">Jenis Kriteria <span class="required">*</span></label>
-															<div class="col-md-6 col-sm-6 col-xs-12">
-																<select name="jenis" class="form-control col-md-7 col-xs-12">
-																	<option value="Biaya">Biaya</option>
-																	<option value="Keuntungan">Keuntungan</option>
-																</select>
 															</div>
 														</div>
 													</div>
@@ -72,53 +69,54 @@
 								</div>
 								<div class="x_content">
 									<?php
-										if(isset($_SESSION['status_kriteria'])) {
-											if($_SESSION['status_kriteria'] == 1) {
+
+										if(isset($_SESSION['status_subkriteria'])) {
+											if($_SESSION['status_subkriteria'] == 1) {
 									?>
 												<div class="alert alert-success alert-dismissible fade in" role="alert">
 													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
-													Sukses menambahkan kriteria!
+													Sukses menambahkan subkriteria!
 												</div>
 									<?php
-											} else if($_SESSION['status_kriteria'] == 0) {
+											} else if($_SESSION['status_subkriteria'] == 0) {
 									?>
 												<div class="alert alert-danger alert-dismissible fade in" role="alert">
 													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
-													Gagal menambahkan kriteria!
+													Gagal menambahkan subkriteria!
 												</div>
 									<?php
-											} else if($_SESSION['status_kriteria'] == 3) {
+											} else if($_SESSION['status_subkriteria'] == 3) {
 									?>
 												<div class="alert alert-success alert-dismissible fade in" role="alert">
 													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
-													Sukses mengubah kriteria!
+													Sukses mengubah subkriteria!
 												</div>
 									<?php
-											} else if($_SESSION['status_kriteria'] == 2) {
+											} else if($_SESSION['status_subkriteria'] == 2) {
 									?>
 												<div class="alert alert-danger alert-dismissible fade in" role="alert">
 													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
-													Gagal mengubah kriteria!
+													Gagal mengubah subkriteria!
 												</div>
 									<?php
-											} else if($_SESSION['status_kriteria'] == 5) {
+											} else if($_SESSION['status_subkriteria'] == 5) {
 									?>
 												<div class="alert alert-success alert-dismissible fade in" role="alert">
 													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
-													Sukses menghapus kriteria!
+													Sukses menghapus subkriteria!
 												</div>
 									<?php
-											} else if($_SESSION['status_kriteria'] == 4) {
+											} else if($_SESSION['status_subkriteria'] == 4) {
 									?>
 												<div class="alert alert-danger alert-dismissible fade in" role="alert">
 													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
-													Gagal menghapus kriteria!
+													Gagal menghapus subkriteria!
 												</div>
 									<?php
 											}
-											session_unset($_SESSION['status_kriteria']);
+											session_unset($_SESSION['status_subkriteria']);
 										}
-										get_kriteria();
+										get_subkriteria();
 									?>
 								</div>
 							</div>
