@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require 'crud_kriteria.php'
 ?>
 

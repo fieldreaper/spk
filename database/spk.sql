@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2017 at 06:14 PM
+-- Generation Time: Jun 05, 2017 at 08:46 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -28,7 +28,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alternatif` (
   `id` int(2) NOT NULL,
-  `nama` int(25) NOT NULL
+  `nama` varchar(25) NOT NULL,
+  `bobot_3` int(2) NOT NULL,
+  `bobot_18` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -50,8 +52,7 @@ CREATE TABLE `kriteria` (
 
 INSERT INTO `kriteria` (`id`, `nama`, `bobot`, `jenis`) VALUES
 (3, 'Manfaat', 10, 'Keuntungan'),
-(5, 'Test kriteria', 1, 'Biaya'),
-(6, 'Tes Kriteria 2', 20, 'Keuntungan');
+(18, 'Tes Kriteria', 1, 'Biaya');
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,9 @@ CREATE TABLE `subkriteria` (
 
 INSERT INTO `subkriteria` (`id`, `nama`, `bobot`, `id_kriteria`) VALUES
 (4, 'Sangat Bermanfaat', 7, 3),
-(5, 'Tes Subkriteria', 2, 5);
+(7, 'Cukup Bermanfaat', 5, 3),
+(8, 'Tes Subkriteria', 10, 18),
+(9, 'Tes Subkriteria 2', 1, 18);
 
 --
 -- Indexes for dumped tables
@@ -110,12 +113,12 @@ ALTER TABLE `alternatif`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --

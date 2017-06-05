@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+	require 'crud_alternatif.php';
+?>
 
 <!DOCTYPE html>
 
@@ -42,6 +44,30 @@
 																<input type="text" name="nama" class="form-control col-md-7 col-xs-12" required />
 															</div>
 														</div>
+														<?php
+															$sql = "SELECT * FROM kriteria";
+															$query = mysqli_query($koneksi, $sql);
+															while($row = mysqli_fetch_assoc($query)) {
+														?>
+																<div class="form-group">
+																	<label class="control-label col-md-3 col-sm-3 col-xs-12">Bobot <?php echo $row['nama']; ?> <span class="required">*</span></label>
+																	<div class="col-md-6 col-sm-6 col-xs-12">
+																		<select name="bobot_<?php echo $row['nama']; ?>" class="form-control col-md-7 col-xs-12">
+																		<?php
+																			$sql2 = "SELECT * FROM subkriteria WHERE id_kriteria = ".$row['id'];
+																			$query2 = mysqli_query($koneksi, $sql2);
+																			while($row2 = mysqli_fetch_assoc($query2)) {
+																		?>
+																				<option value="<?php echo $row2['bobot']; ?>"><?php echo $row2['nama']; ?></option>
+																		<?php
+																			}
+																		?>	
+																		</select>
+																	</div>
+																</div>
+														<?php
+															}
+														?>
 													</div>
 													<div class="modal-footer">
 														<button type="submit" class="btn btn-primary" name="tambah">Tambah</button>

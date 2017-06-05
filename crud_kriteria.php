@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require 'koneksi.php';
 
 	if(isset($_POST['tambah'])) {
@@ -10,7 +11,15 @@
 		$query = mysqli_query($koneksi, $sql);
 
 		if($query) {
-			$_SESSION['status_kriteria'] = 1;
+			$id = mysqli_insert_id($koneksi);
+			$sql = "ALTER TABLE alternatif ADD bobot_".$id." INT (2) NOT NULL";
+			$query = mysqli_query($koneksi, $sql);
+
+			if($query) {
+				$_SESSION['status_kriteria'] = 1;
+			} else {
+				$_SESSION['status_kriteria'] = 0;
+			}
 		} else {
 			$_SESSION['status_kriteria'] = 0;
 		}
@@ -43,7 +52,14 @@
 		$query = mysqli_query($koneksi, $sql);
 
 		if($query) {
-			$_SESSION['status_kriteria'] = 5;
+			$sql = "ALTER TABLE alternatif DROP COLUMN bobot_".$id_kriteria;
+			$query = mysqli_query($koneksi, $sql);
+
+			if($query) {
+				$_SESSION['status_kriteria'] = 5;
+			} else {
+				$_SESSION['status_kriteria'] = 4;
+			}
 		} else {
 			$_SESSION['status_kriteria'] = 4;
 		}
