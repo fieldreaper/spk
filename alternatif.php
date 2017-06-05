@@ -36,7 +36,7 @@
 													<button class="close" data-dismiss="modal"><span aria-hidden="true">x</span></button>
 													<h4 class="modal-title">Tambah Data Alternatif</h4>
 												</div>
-												<form method="post" action="" data-parsley-validate class="form-horizontal form-label-left">
+												<form method="post" action="crud_alternatif.php" data-parsley-validate class="form-horizontal form-label-left">
 													<div class="modal-body">
 														<div class="form-group">
 															<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Alternatif <span class="required">*</span></label>
@@ -52,7 +52,7 @@
 																<div class="form-group">
 																	<label class="control-label col-md-3 col-sm-3 col-xs-12">Bobot <?php echo $row['nama']; ?> <span class="required">*</span></label>
 																	<div class="col-md-6 col-sm-6 col-xs-12">
-																		<select name="bobot_<?php echo $row['nama']; ?>" class="form-control col-md-7 col-xs-12">
+																		<select name="bobot[]" class="form-control col-md-7 col-xs-12">
 																		<?php
 																			$sql2 = "SELECT * FROM subkriteria WHERE id_kriteria = ".$row['id'];
 																			$query2 = mysqli_query($koneksi, $sql2);
@@ -79,7 +79,55 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<h4>Konten Alternatif</h4>
+									<?php
+										if(isset($_SESSION['status_alternatif'])) {
+											if($_SESSION['status_alternatif'] == 1) {
+									?>
+												<div class="alert alert-success alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Sukses menambahkan alternatif!
+												</div>
+									<?php
+											} else if($_SESSION['status_alternatif'] == 0) {
+									?>
+												<div class="alert alert-danger alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Gagal menambahkan alternatif!
+												</div>
+									<?php
+											} else if($_SESSION['status_alternatif'] == 3) {
+									?>
+												<div class="alert alert-success alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Sukses mengubah alternatif!
+												</div>
+									<?php
+											} else if($_SESSION['status_alternatif'] == 2) {
+									?>
+												<div class="alert alert-danger alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Gagal mengubah alternatif!
+												</div>
+									<?php
+											} else if($_SESSION['status_alternatif'] == 5) {
+									?>
+												<div class="alert alert-success alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Sukses menghapus alternatif!
+												</div>
+									<?php
+											} else if($_SESSION['status_alternatif'] == 4) {
+									?>
+												<div class="alert alert-danger alert-dismissible fade in" role="alert">
+													<button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+													Gagal menghapus alternatif!
+												</div>
+									<?php
+											}
+											session_unset($_SESSION['status_alternatif']);
+										}
+										get_alternatif();
+									?>
 								</div>
 							</div>
 						</div>
