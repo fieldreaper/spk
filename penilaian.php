@@ -63,10 +63,11 @@
 												$bobot_kriteria[$i] /= $total_bobot;
 											}
 
-											// Normalisasi x Bobot
+											// Normalisasi x Bobot Masim belum bisa
 											while($row = mysqli_fetch_assoc($query)) {
 												$hasil = 0;
 												$i = 0;
+												mysqli_data_seek($query2, 0);
 												while($row2 = mysqli_fetch_assoc($query2)) {
 													if($row2['jenis'] == "Keuntungan") {
 														$hasil += ($row['bobot_'.$row2['id']] / $maxmin[$i]) * $bobot_kriteria[$i];
@@ -86,15 +87,28 @@
 											}
 
 											array_multisort($hasil1, SORT_DESC, $data);
-											$no = 1;
-											$juara = 1;
-
-											foreach($data as $item) {
-												echo $no." ".$item['nama']." ".$item['hasil']." ".$juara;
-												$no++; $juara++;
-											}
 										}
 									?>
+									<table class="table table-striped">
+										<tr>
+											<th>Rank</th>
+											<th>Nama Alternatif</th>
+											<th>Nilai SAW</th>
+										</tr>
+									<?php
+										$no = 1;
+										foreach($data as $item) {
+									?>
+											<tr>
+												<td><?php echo $no; ?></td>
+												<td><?php echo $item['nama']; ?></td>
+												<td><?php echo $item['hasil']; ?></td>
+											</tr>
+									<?php
+											$no++;
+										}
+									?>
+									</table>
 								</div>
 							</div>
 						</div>
