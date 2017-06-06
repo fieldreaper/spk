@@ -15,7 +15,7 @@
 			$_SESSION['status_alternatif'] = 0;
 		}
 
-		header('Location: kriteria.php');
+		header('Location: alternatif.php');
 	}
 
 	if(isset($_POST['ubah'])) {
@@ -31,13 +31,13 @@
 			$_SESSION['status_alternatif'] = 2;
 		}
 
-		header('Location: kriteria.php');
+		header('Location: alternatif.php');
 	}
 
 	if(isset($_POST['hapus'])) {
 		$id_kriteria = $_POST['id'];
 
-		$sql = "DELETE FROM kriteria WHERE id = $id_kriteria";
+		$sql = "DELETE FROM alternatif WHERE id = $id_kriteria";
 		$query = mysqli_query($koneksi, $sql);
 
 		if($query) {
@@ -46,7 +46,7 @@
 			$_SESSION['status_alternatif'] = 4;
 		}
 
-		header('Location: kriteria.php');
+		header('Location: alternatif.php');
 	}
 
 	function get_alternatif() {
@@ -92,20 +92,20 @@
 												</div>
 											</div>
 											<?php
-												$sql = "SELECT * FROM kriteria";
-												$query = mysqli_query($koneksi, $sql);
-												while($row = mysqli_fetch_assoc($query)) {
+												$sql2 = "SELECT * FROM kriteria";
+												$query2 = mysqli_query($koneksi, $sql2);
+												while($row2 = mysqli_fetch_assoc($query2)) {
 											?>
 													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3 col-xs-12">Bobot <?php echo $row['nama']; ?> <span class="required">*</span></label>
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Bobot <?php echo $row2['nama']; ?> <span class="required">*</span></label>
 														<div class="col-md-6 col-sm-6 col-xs-12">
 															<select name="bobot[]" class="form-control col-md-7 col-xs-12">
 															<?php
-																$sql2 = "SELECT * FROM subkriteria WHERE id_kriteria = ".$row['id'];
-																$query2 = mysqli_query($koneksi, $sql2);
-																while($row2 = mysqli_fetch_assoc($query2)) {
+																$sql3 = "SELECT * FROM subkriteria WHERE id_kriteria = ".$row2['id'];
+																$query3 = mysqli_query($koneksi, $sql3);
+																while($row3 = mysqli_fetch_assoc($query3)) {
 															?>
-																	<option value="<?php echo $row2['bobot']; ?>"><?php echo $row2['nama']; ?></option>
+																	<option value="<?php echo $row3['bobot']; ?>"><?php echo $row3['nama']; ?></option>
 															<?php
 																}
 															?>	
@@ -132,7 +132,7 @@
 										<button class="close" data-dismiss="modal"><span aria-hidden="true">x</span></button>
 										<h4 class="modal-title">Apakah anda yakin akan menghapus alternatif berikut:</h4>
 									</div>
-									<form method="post" action="crud_kriteria.php" data-parsley-validate class="form-horizontal form-label-left">
+									<form method="post" action="crud_alternatif.php" data-parsley-validate class="form-horizontal form-label-left">
 										<div class="modal-body">
 											<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 											<div class="form-group">
