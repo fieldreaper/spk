@@ -8,7 +8,7 @@
 	<?php require 'layout/header.php'; ?>
 </head>
 
-<body class="nav-md">
+<body class="nav-md footer_fixed">
 	<div class="container body">
 		<div class="main_container">
 			<?php
@@ -42,6 +42,7 @@
 										} else {
 											$bobot_kriteria = array();
 											$maxmin = array();
+											$persentase = array(25, 20, 15, 10, 5, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1);
 											while($row = mysqli_fetch_assoc($query2)) {
 												$bobot_kriteria[] = $row['bobot'];
 												if($row['jenis'] == "Keuntungan") {
@@ -63,7 +64,7 @@
 												$bobot_kriteria[$i] /= $total_bobot;
 											}
 
-											// Normalisasi x Bobot Masim belum bisa
+											// Normalisasi x Bobot
 											while($row = mysqli_fetch_assoc($query)) {
 												$hasil = 0;
 												$i = 0;
@@ -94,6 +95,7 @@
 											<th>Rank</th>
 											<th>Nama Alternatif</th>
 											<th>Nilai SAW</th>
+											<th>Persentase Dana</th>
 										</tr>
 									<?php
 										$no = 1;
@@ -103,6 +105,7 @@
 												<td><?php echo $no; ?></td>
 												<td><?php echo $item['nama']; ?></td>
 												<td><?php echo $item['hasil']; ?></td>
+												<td><?php echo $persentase[$no - 1]."%"; ?></td>
 											</tr>
 									<?php
 											$no++;

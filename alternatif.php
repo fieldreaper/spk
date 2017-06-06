@@ -10,7 +10,7 @@
 	<?php require 'layout/header.php'; ?>
 </head>
 
-<body class="nav-md">
+<body class="nav-md footer_fixed">
 	<div class="container body">
 		<div class="main_container">
 			<?php

@@ -2,7 +2,7 @@
 	<div class="left_col scroll-view">
 		
 		<div class="navbar nav_title" style="border: 0;">
-			<a href="index.php" class="site_title"><i class="fa fa-terminal"></i> <span>SPK SAW</span></a>
+			<a href="index.php" class="site_title">SPK DANA PROKER</a>
 		</div>
 
 		<div class="clearfix"></div>
