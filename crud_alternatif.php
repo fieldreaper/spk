@@ -19,10 +19,11 @@
 	}
 
 	if(isset($_POST['ubah'])) {
-		$id_kriteria = $_POST['id'];
-		$nama_kriteria = $_POST['nama'];
+		$id_alternatif = $_POST['id'];
+		$nama_alternatif = $_POST['nama'];
+		$bobot_alternatif = implode(", ", $_POST['bobot']);
 
-		$sql = "UPDATE kriteria SET nama = '$nama_kriteria', bobot = $bobot_kriteria, jenis = '$jenis_kriteria' WHERE id = $id_kriteria";
+		$sql = "UPDATE alternatif SET nama = '$nama_kriteria', bobot = $bobot_kriteria, jenis = '$jenis_kriteria' WHERE id = $id_kriteria";
 		$query = mysqli_query($koneksi, $sql);
 
 		if($query) {
@@ -35,7 +36,7 @@
 	}
 
 	if(isset($_POST['hapus'])) {
-		$id_kriteria = $_POST['id'];
+		$id_alternatif = $_POST['id'];
 
 		$sql = "DELETE FROM alternatif WHERE id = $id_kriteria";
 		$query = mysqli_query($koneksi, $sql);
