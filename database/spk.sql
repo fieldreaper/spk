@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2017 at 08:46 AM
+-- Generation Time: Jun 06, 2017 at 11:31 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -29,9 +29,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `alternatif` (
   `id` int(2) NOT NULL,
   `nama` varchar(25) NOT NULL,
-  `bobot_3` int(2) NOT NULL,
-  `bobot_18` int(2) NOT NULL
+  `bobot_20` int(2) NOT NULL,
+  `bobot_21` int(2) NOT NULL,
+  `bobot_22` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `alternatif`
+--
+
+INSERT INTO `alternatif` (`id`, `nama`, `bobot_20`, `bobot_21`, `bobot_22`) VALUES
+(5, 'Ngopi Sehat', 6, 8, 6),
+(6, 'Mas Mba MIPA', 6, 8, 6),
+(7, 'BEM Participant', 6, 8, 4);
 
 -- --------------------------------------------------------
 
@@ -51,8 +61,9 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id`, `nama`, `bobot`, `jenis`) VALUES
-(3, 'Manfaat', 10, 'Keuntungan'),
-(18, 'Tes Kriteria', 1, 'Biaya');
+(20, 'Ruang Lingkup Acara', 8, 'Keuntungan'),
+(21, 'Sasaran', 7, 'Keuntungan'),
+(22, 'Undangan', 5, 'Biaya');
 
 -- --------------------------------------------------------
 
@@ -72,10 +83,16 @@ CREATE TABLE `subkriteria` (
 --
 
 INSERT INTO `subkriteria` (`id`, `nama`, `bobot`, `id_kriteria`) VALUES
-(4, 'Sangat Bermanfaat', 7, 3),
-(7, 'Cukup Bermanfaat', 5, 3),
-(8, 'Tes Subkriteria', 10, 18),
-(9, 'Tes Subkriteria 2', 1, 18);
+(10, 'Umum', 9, 20),
+(11, 'Universitas', 8, 20),
+(12, 'Fakultas', 6, 20),
+(13, 'Umum', 9, 21),
+(14, 'Mahasiswa', 8, 21),
+(15, 'SMA/Sederajat', 6, 21),
+(16, 'Luar Universitas', 9, 22),
+(17, 'Dalam Universitas', 8, 22),
+(18, 'Dalam Fakultas', 6, 22),
+(19, 'Tidak ada', 4, 22);
 
 --
 -- Indexes for dumped tables
@@ -108,17 +125,17 @@ ALTER TABLE `subkriteria`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- Constraints for dumped tables
 --
