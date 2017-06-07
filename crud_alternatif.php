@@ -21,12 +21,26 @@
 	if(isset($_POST['ubah'])) {
 		$id_alternatif = $_POST['id'];
 		$nama_alternatif = $_POST['nama'];
-		$bobot_alternatif = implode(", ", $_POST['bobot']);
+		$bobot_alternatif = $_POST['bobot'];
 
-		$sql = "UPDATE alternatif SET nama = '$nama_kriteria', bobot = $bobot_kriteria, jenis = '$jenis_kriteria' WHERE id = $id_kriteria";
+		$sql = "SELECT * FROM kriteria";
 		$query = mysqli_query($koneksi, $sql);
 
-		if($query) {
+		$i = 0;
+		$sukses = FALSE;
+		while($row = mysqli_fetch_assoc($query)) {
+			$sql2 = "UPDATE alternatif SET nama = '$nama_alternatif', bobot_".$row['id']."= $bobot_alternatif[$i] WHERE id = $id_alternatif";
+			$query2 = mysqli_query($koneksi, $sql2);
+
+			if($query2) {
+				$sukses = TRUE;
+			} else {
+				$sukses = FASLE;
+			}
+			$i++;
+		}
+
+		if($sukses) {
 			$_SESSION['status_alternatif'] = 3;
 		} else {
 			$_SESSION['status_alternatif'] = 2;
@@ -38,7 +52,7 @@
 	if(isset($_POST['hapus'])) {
 		$id_alternatif = $_POST['id'];
 
-		$sql = "DELETE FROM alternatif WHERE id = $id_kriteria";
+		$sql = "DELETE FROM alternatif WHERE id = $id_alternatif";
 		$query = mysqli_query($koneksi, $sql);
 
 		if($query) {
@@ -106,10 +120,10 @@
 																$query3 = mysqli_query($koneksi, $sql3);
 																while($row3 = mysqli_fetch_assoc($query3)) {
 															?>
-																	<option value="<?php echo $row3['bobot']; ?>"><?php echo $row3['nama']; ?></option>
+																	<option value="<?php echo $row3['bobot']; ?>" <?php if($row['bobot_'.$row2['id']] == $row3['bobot']) { echo 'selected="selected"'; } ?>><?php echo $row3['nama']; ?></option>
 															<?php
 																}
-															?>	
+															?>
 															</select>
 														</div>
 													</div>
@@ -142,6 +156,29 @@
 													<input type="text" name="nama" class="form-control col-md-7 col-xs-12" value="<?php echo $row['nama']; ?>" readonly />
 												</div>
 											</div>
+											<?php
+												$query2 = mysqli_query($koneksi, $sql2);
+												while($row2 = mysqli_fetch_assoc($query2)) {
+											?>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Bobot <?php echo $row2['nama']; ?> <span class="required">*</span></label>
+														<div class="col-md-6 col-sm-6 col-xs-12">
+															<?php
+																$sql3 = "SELECT * FROM subkriteria WHERE id_kriteria = ".$row2['id'];
+																$query3 = mysqli_query($koneksi, $sql3);
+																while($row3 = mysqli_fetch_assoc($query3)) {
+																	if($row['bobot_'.$row2['id']] == $row3['bobot']) {
+															?>
+																		<input type="text" name="bobot[]" class="form-control col-md-7 col-xs-12" value="<?php echo $row3['nama']; ?>" readonly />
+															<?php
+																	}
+																}
+															?>
+														</div>
+													</div>
+											<?php
+												}
+											?>
 										</div>
 										<div class="modal-footer">
 											<button class="btn btn-default" data-dismiss="modal">Batal</button>
