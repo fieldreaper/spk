@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2017 at 11:31 AM
+-- Generation Time: Jun 08, 2017 at 03:43 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alternatif` (
   `id` int(2) NOT NULL,
-  `nama` varchar(25) NOT NULL,
+  `nama` varchar(30) NOT NULL,
   `bobot_20` int(2) NOT NULL,
   `bobot_21` int(2) NOT NULL,
   `bobot_22` int(2) NOT NULL
@@ -41,7 +41,16 @@ CREATE TABLE `alternatif` (
 INSERT INTO `alternatif` (`id`, `nama`, `bobot_20`, `bobot_21`, `bobot_22`) VALUES
 (5, 'Ngopi Sehat', 6, 8, 6),
 (6, 'Mas Mba MIPA', 6, 8, 6),
-(7, 'BEM Participant', 6, 8, 4);
+(7, 'BEM Participant', 6, 8, 4),
+(8, 'OLIMIPADE', 6, 8, 6),
+(9, 'Pengkaryaan Ekonomi Kreat', 9, 9, 9),
+(10, 'Sekolah Ristek', 6, 8, 9),
+(11, 'Mipa Competition and Education', 9, 9, 9),
+(12, 'Mipa Go Green', 6, 8, 9),
+(13, 'Kompos (Kompetisi Poster)', 8, 8, 8),
+(14, 'Dusbin Sehat', 9, 9, 6),
+(15, 'Dusbin Week', 9, 9, 6),
+(16, 'Donor Darah MIPA', 9, 9, 9);
 
 -- --------------------------------------------------------
 
@@ -125,7 +134,7 @@ ALTER TABLE `subkriteria`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
